@@ -197,7 +197,7 @@ and your footer gets pushed down a bit more, creating vertical scroll bars in th
 #footer .footer-content {
   width: 800px;
   margin: 0 auto;
-  font-size: 15px;
+  font-size: 12px;
   }
 
 #footer a.help, #footer a.about{
