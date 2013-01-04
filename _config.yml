@@ -1,7 +1,7 @@
 auto: true
 server: true
 permalink: none
-baseurl: "kappataumu.com"
+baseurl: "http://kappataumu.com"
 exclude:
 - .gitignore
 - README.md
