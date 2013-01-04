@@ -280,7 +280,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   font-size: 36px;
   margin-bottom: 10px;
   font-weight: bold;
-  padding-bottom: 10px;
+  line-height: 1em;
 }
 
 .intro .abstract {
