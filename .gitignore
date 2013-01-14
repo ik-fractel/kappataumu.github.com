@@ -164,3 +164,7 @@ pip-log.txt
 
 # Jekyll
 _site/*
+
+# Komodo project files
+*.komodoproject
+*.kpf
