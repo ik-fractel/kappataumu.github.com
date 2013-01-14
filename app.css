@@ -278,6 +278,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   margin-bottom: 10px;
   font-weight: bold;
   line-height: 1em;
+  margin-left: 20px;
 }
 
 .intro .abstract {
