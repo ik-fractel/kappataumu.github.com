@@ -13,7 +13,11 @@ layout: default
 <div class="intro">
 {% for item in site.categories.articles limit:40 offset:0 %}
 
-    <div class="title"><a class="article-link" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">{{item.title}}</a></div>
+    <div class="title">
+        <a class="article-link" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
+            {{item.title}}
+        </a>
+    </div>
     <!--<div class="abstract">{{item.abstract}}</div>-->
     <!--<div class="meta"> Posted by <a href="http://twitter.com/{{item.author_twitter}}">{{item.author}}</a> on {{ item.date | date: "%B %d, %Y" }} </div>-->
 
