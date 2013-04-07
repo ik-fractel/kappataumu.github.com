@@ -2,7 +2,7 @@
 layout: default
 published: true
 category: articles
-title: Hosting your site on GitHub, using GitHub pages and prose
+title: A more involved hello-world
 ---
 
 Consistently finding time and energy to blog is hard. 
