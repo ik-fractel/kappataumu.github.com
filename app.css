@@ -159,7 +159,9 @@ p {
 
 
 #main {
-  padding-top: 60px;
+  padding-top: 90px;
+  padding-left: 90px;
+  padding-right: 90px;
   overflow:auto;
   padding-bottom: 60px; /* must be same height as the footer */
   }
