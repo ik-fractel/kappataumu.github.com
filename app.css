@@ -142,6 +142,7 @@ p {
   color: white;
   height: 30px;
   font-weight: bold;
+  padding-left: 50px;
   }
 
 #header a.title span {
