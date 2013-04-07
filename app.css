@@ -47,8 +47,8 @@ html {
   Typography
 ---------------------------------------------*/
 html,body {
-  color: #7A8387;
-  background: #e7eef2;
+  color: black;
+  background: white;
   -webkit-font-smoothing: antialiased;
   height: 100%;
   line-height: 1.5em;
