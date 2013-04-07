@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: article
 published: true
 category: articles
 title: A more involved hello-world
