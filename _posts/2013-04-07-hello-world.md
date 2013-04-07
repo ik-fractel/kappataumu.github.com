@@ -1,6 +1,7 @@
 ---
 layout: default
 published: true
+category: articles
 title: Hosting your site on GitHub, using GitHub pages and prose
 ---
 
