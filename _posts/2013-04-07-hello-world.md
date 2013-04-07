@@ -3,7 +3,7 @@ layout: article
 published: true
 category: articles
 title: A more involved hello-world
-autor: kappataumu
+author: kappataumu
 author_twitter: kappataumu
 ---
 
