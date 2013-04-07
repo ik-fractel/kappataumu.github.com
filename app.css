@@ -277,12 +277,12 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 }
 
 .intro .article-title {
-  font-size: 24px;
+  font-size: 62px;
   margin-bottom: 10px;
   font-weight: bold;
   line-height: 1em;
 
-  margin-left: 20px;
+  /*margin-left: 20px;*/
   margin-top: 10px;
   margin-bottom: 20px;
 }
