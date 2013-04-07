@@ -3,6 +3,8 @@ layout: article
 published: true
 category: articles
 title: A more involved hello-world
+autor: kappataumu
+author_twitter: kappataumu
 ---
 
 Consistently finding time and energy to blog is hard. 
