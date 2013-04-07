@@ -301,7 +301,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 }
 
 .post-content {
-  width: 800px;
+  /*width: 800px;*/
   margin: 0px auto;
   padding: 20px 0;
   font-family: 'OpenSans', sans-serif;
