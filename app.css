@@ -295,7 +295,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 }
 
 .intro .meta {
-  width: 800px;
+  /*width: 800px;*/
   margin: 20px auto;
   padding-top: 20px;
 }
