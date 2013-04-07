@@ -1,6 +1,6 @@
 ---
 layout: default
-published: false
+published: true
 title: Hosting your site on GitHub, using GitHub pages and prose
 ---
 
