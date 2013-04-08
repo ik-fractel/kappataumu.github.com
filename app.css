@@ -277,7 +277,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   border-bottom: 1px solid #c3ccd0;*/
 }
 
-.intro .article-title {
+article h1 {
   font-size: 62px;
   margin-bottom: 10px;
   font-weight: bold;
