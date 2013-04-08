@@ -261,7 +261,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   background: #078FA2;
 }
 
-.article-wrapper {
+article {
   background: #fff;
   padding-bottom: 50px;
 }
