@@ -257,9 +257,9 @@ body:before {/* thanks to Maleika (Kohoutec)*/
   margin-right: 10px;
 }
 
-.article-link:hover, .article-link.active {
-  background: #078FA2;
-}
+/*.article-link:hover, .article-link.active {*/
+/*  background: #078FA2;*/
+/*}*/
 
 article {
   background: #fff;
@@ -288,6 +288,11 @@ article h1 {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+article h1 a:hover, article h1 a:active {
+    background: #078FA2;
+}
+
 
 .intro .abstract {
   width: 800px;
