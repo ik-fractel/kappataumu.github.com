@@ -124,7 +124,7 @@ p {
 ---------------------------------------------*/
 
 /* Top Branding/Navigation */
-#header {
+header {
   position: absolute;
   top: 0;
   right: 0;
@@ -136,7 +136,7 @@ p {
   }
 
 
-#header a.title {
+header a.title {
   font-size: 14px;
   line-height: 30px;
   color: white;
@@ -145,11 +145,11 @@ p {
   padding-left: 50px;
   }
 
-#header a.title span {
+header a.title span {
   display: none;
   }
 
-#header .navigation {
+header nav {
   margin: 0 auto;
   font-size: 12px;
   position: relative;
