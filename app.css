@@ -125,12 +125,12 @@ p {
 
 /* Top Branding/Navigation */
 header {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 0 40px;
-  height: 30px;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*right: 0;*/
+  /*left: 0;*/
+  /*padding: 0 40px;*/
+  height: 50px;
   background: #667880;
   overflow: visible;
   }
@@ -181,7 +181,7 @@ vertical margins (top and bottom) to add spacing, else those margins get added t
 and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
 
 #container {
-  min-height: 100%;
+  padding: 5em;
   }
 
 #footer {
