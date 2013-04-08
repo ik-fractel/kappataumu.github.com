@@ -264,6 +264,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 article {
   background: #fff;
   padding-bottom: 50px;
+  max-width: 600px;
 }
 
 .intro {
