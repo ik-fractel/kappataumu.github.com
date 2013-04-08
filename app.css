@@ -47,7 +47,7 @@ html {
   Typography
 ---------------------------------------------*/
 html,body {
-  color: #57676e;;
+  color: #57676e;
   background: white;
   -webkit-font-smoothing: antialiased;
   height: 100%;
@@ -130,7 +130,7 @@ header {
   /*right: 0;*/
   /*left: 0;*/
   /*padding: 0 40px;*/
-  height: 50px;
+  height: 70px;
   background: #667880;
   overflow: visible;
   }
@@ -138,11 +138,11 @@ header {
 
 header a.title {
   font-size: 14px;
-  line-height: 30px;
+  line-height: 70px;
   color: white;
   height: 30px;
   font-weight: bold;
-  padding-left: 50px;
+  padding-left: 5em;
   }
 
 header a.title span {
