@@ -10,7 +10,7 @@ layout: default
 <!--  {% endfor %}-->
 <!--</div>-->
 
-<div class="intro">
+<!--<div class="intro">-->
 {% for item in site.categories.articles limit:40 offset:0 %}
 
     <article>
@@ -19,22 +19,12 @@ layout: default
         </div>
 
         <h1>
-            <a class="article-link" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
+            <a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
                 {{item.title}}
             </a>
         </h1>
     </article>
 
-
-    <!--<div class="abstract">{{item.abstract}}</div>-->
-    <!--<div class="meta"> Posted by <a href="http://twitter.com/{{item.author_twitter}}">{{item.author}}</a> on {{ item.date | date: "%B %d, %Y" }} </div>-->
-
-
-<!--  <div class="article-wrapper">
-    <div class="help post-content">
-      {{ item.content }}
-    </div>
-  </div>-->
 {% endfor %}
 
-</div>
+<!--</div>-->
