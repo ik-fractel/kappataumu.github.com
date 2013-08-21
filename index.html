@@ -2,6 +2,7 @@
 layout: nouveau
 ---
 
+<div class="headline-list">
 
 {% for item in site.categories.articles limit:40 offset:0 %}
 
@@ -15,10 +16,9 @@ layout: nouveau
             {{ item.excerpt }}
             <span class="label label-info pull-right read-more">Read more</span>
         </p>
-
-
     </article>
 
 {% endfor %}
 
+</div>
 
