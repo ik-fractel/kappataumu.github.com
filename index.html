@@ -1,27 +1,24 @@
 ---
-layout: default
+layout: nouveau
 ---
 
-<!--<div class="article-navigation">-->
-<!--  {% for item in site.categories.articles limit:40 offset:0 %}-->
-<!--    <a class="article-link" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">-->
-<!---->
-<!--    </a>--->
-<!--  {% endfor %}-->
-<!--</div>-->
 
-<!--<div class="intro">-->
 {% for item in site.categories.articles limit:40 offset:0 %}
 
-    <article>
-        <div class="article-date"> {{ item.date | date: "%B %d, %Y" }} </div>
+        <article>
         <h1>
-            <a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
+            <a href="{{site.baseurl}}{{item.url}} title="{{item.title}}">
                 {{item.title}}
             </a>
         </h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at pulvinar libero. Nulla ultricies, tellus non dignissim bibendum, metus purus scelerisque neque, in accumsan odio ante at metus. Nunc sit amet nisi egestas turpis pretium lacinia. Nulla et eros lacinia, bibendum justo sed.
+            <span class="label label-info pull-right read-more">Read more</span>
+        </p>
+
+
     </article>
 
 {% endfor %}
 
-<!--</div>-->
+
