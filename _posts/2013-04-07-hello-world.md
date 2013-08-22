@@ -7,9 +7,7 @@ author: kappataumu
 author_twitter: kappataumu
 ---
 
-Consistently finding time and energy to blog is hard.
-
-Not only life happens, there is also a strong urge to optimise everything before you even start; finding the perfect tools and processes to, well, put pixels on a screen.
+Consistently finding time and energy to blog is hard. Not only life happens, there is also a strong urge to optimise everything before you even start; finding the perfect tools and processes to, well, put pixels on a screen.
 
 <!--more-->
 
