@@ -9,8 +9,6 @@ author_twitter: kappataumu
 
 Consistently finding time and energy to blog is hard. Not only life happens, there is also a strong urge to optimise everything before you even start; finding the perfect tools and processes to, well, put pixels on a screen.
 
-<!--more-->
-
 Over the years i have found myself wanting to share thoughts and various technical tidbits, but the burdain of setting up a blog has been insurmountable.
 
 Many times have i gone down the path of writing my own minimalistic blogging platform as a silver bullet, but in the end, if your goal is to get stuff out there it might be saner to write first and worry about the tech stack later. So i let go.

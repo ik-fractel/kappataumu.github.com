@@ -2,7 +2,6 @@ auto: true
 server: true
 permalink: none
 baseurl: "http://kappataumu.com"
-excerpt_separator: "\n<!--more-->\n"
 exclude:
 - .gitignore
 - README.md
