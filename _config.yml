@@ -31,6 +31,6 @@ prose:
           placeholder: "Choose nay or yay"
           options:
             - name: "on"
-              value: "on"
+              value: "Yes!"
             - name: "off"
-              value: "off"
+              value: "No..."
