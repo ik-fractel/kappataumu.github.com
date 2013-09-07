@@ -30,7 +30,7 @@ prose:
           label: "Are you happy today?"
           placeholder: "Choose nay or yay"
           options:
-            - name: "on"
-              value: "Yes!"
-            - name: "off"
-              value: "No..."
+            - name: "Yes!"
+              value: "on"
+            - name: "No..."
+              value: "off"
