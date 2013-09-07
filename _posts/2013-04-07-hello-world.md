@@ -17,6 +17,11 @@ Since Git, GitHub and Jekyll seem to be all the rage, i took the plunge and pull
 
 So there you have it. A more involved hello-world, indeed.
 
-``` perl
+```perl
+use utf8;
+use strict;
+use warnings;
+use v5.10;
+
 say "hello world"
 ```
