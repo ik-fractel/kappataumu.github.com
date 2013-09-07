@@ -1,3 +1,4 @@
+markdown: redcarpet
 auto: true
 server: true
 permalink: none
