@@ -5,3 +5,10 @@ baseurl: "http://kappataumu.com"
 exclude:
 - .gitignore
 - README.md
+prose:
+  metadata:
+    _posts:
+      - layout: nouveau_article
+      - category: articles
+      - author: kappataumu
+      - author_twitter: kappataumu
