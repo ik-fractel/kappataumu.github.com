@@ -12,15 +12,3 @@ prose:
         field:
           element: "hidden"
           value: "nouveau_article"
-      - name: "category": 
-        field:
-          element: "hidden"
-          value: "articles"
-      - name: "author"
-        field:
-          element: "hidden"
-          value: "kappataumu"
-      - name: "author_twitter"
-        field:
-          element: "hidden"
-          value: "kappataumu"
