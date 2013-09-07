@@ -24,3 +24,9 @@ prose:
         field:
           element: "hidden"
           value: "kappataumu"
+      - name: "happyness"
+        field:
+          element: "button"
+          label: "Are you happy today?"
+          on: "Yep"
+          off: "Nope"
