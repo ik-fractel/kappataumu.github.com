@@ -8,7 +8,22 @@ exclude:
 prose:
   metadata:
     _posts:
-      - layout: nouveau_article
-      - category: articles
-      - author: kappataumu
-      - author_twitter: kappataumu
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "nouveau_article"
+          
+      - name: "category": 
+        field:
+          element: "hidden"
+          value: "articles"
+          
+      - name: "author"
+        field:
+          element: "hidden"
+          value: "kappataumu"
+          
+      - name: "author_twitter"
+        field:
+          element: "hidden"
+          value: "kappataumu"
