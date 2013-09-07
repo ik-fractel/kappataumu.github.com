@@ -12,3 +12,7 @@ prose:
         field:
           element: "hidden"
           value: "nouveau_article"
+      - name: "category": 
+        field:
+          element: "hidden"
+          value: "articles"
