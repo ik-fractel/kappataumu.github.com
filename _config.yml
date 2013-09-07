@@ -26,7 +26,11 @@ prose:
           value: "kappataumu"
       - name: "happyness"
         field:
-          element: "button"
+          element: "multiselect"
           label: "Are you happy today?"
-          on: "Yep"
-          off: "Nope"
+          placeholder: "Choose nay or yay"
+          options:
+            - name: "on"
+              value: "on"
+            - name: "off"
+              value: "off"
