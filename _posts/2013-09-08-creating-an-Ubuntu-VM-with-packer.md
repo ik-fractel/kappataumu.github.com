@@ -73,4 +73,14 @@ Remember that you can always validate the correctness of the template by running
 
 Next, the file used to preseed the installer:
 
+```cfg
+# Some inspiration:
+# * https://github.com/chrisroberts/vagrant-boxes/blob/master/definitions/precise-64/preseed.cfg
+# * https://github.com/cal/vagrant-ubuntu-precise-64/blob/master/preseed.cfg
 
+# English plx
+d-i debian-installer/language string en
+d-i debian-installer/locale string en_US.UTF-8
+d-i localechooser/preferred-locale string en_US.UTF-8
+d-i localechooser/supported-locales en_US.UTF-8
+```
