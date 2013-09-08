@@ -59,7 +59,7 @@ Now, armed with this information, we start by creating the Packer template. Letâ
             "/install/vmlinuz noapic ",
             "preseed/url={{user `preseed`}}",
             "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-            "hostname={{user `hostname`}}",
+            "hostname={{ "{{user `hostname`"}}}}",
             "fb=false debconf/frontend=noninteractive ",
             "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
             "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
