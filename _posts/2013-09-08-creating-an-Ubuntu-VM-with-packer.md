@@ -68,3 +68,9 @@ Now, armed with this information, we start by creating the Packer template. Letâ
     }]
 }
 ```
+
+Remember that you can always validate the correctness of the template by running packer validate ubuntu_64.json
+
+Next, the file used to preseed the installer:
+
+
