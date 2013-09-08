@@ -52,12 +52,12 @@ Now, armed with this information, we start by creating the Packer template. Letâ
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_wait_timeout": "20m",
 
-        "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
+        "shutdown_command": "echo {{ "{{user `ssh_pass`"}}}} | sudo -S shutdown -P now",
 
         "boot_command" : [
             "<esc><esc><enter><wait>",
             "/install/vmlinuz noapic ",
-            "preseed/url={{user `preseed`}}",
+            "preseed/url={{ "{{user `preseed`"}}}}",
             "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
             "hostname={{ "{{user `hostname`"}}}}",
             "fb=false debconf/frontend=noninteractive ",
