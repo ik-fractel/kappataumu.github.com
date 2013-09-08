@@ -156,8 +156,6 @@ d-i finish-install/reboot_in_progress note
 
 Now we can finally build the image:
 
-
 ![conemu_packer_result.png](/uploads/conemu_packer_result.png)
 
-
-
+So there you have it! Now we can login and play.
