@@ -28,3 +28,43 @@ One of these commands will instruct the Ubuntu installer to fetch a preconfigura
 Do note that due to missing CA certs, the preconfiguration file is best served from a non-https URL [3]. Keep this in mind if you were thinking of simply hosting it off a GitHub repo.
 
 Now, armed with this information, we start by creating the Packer template. Let’s name it ubuntu_64.json and place it in the same directory as Packer itself. Take a look at mine: 
+
+```json
+{
+    "variables": {
+        "ssh_name": "kappataumu",
+        "ssh_pass": "kappataumu",
+        "preseed" : "http:/example.com/ubuntu/preseed.cfg",
+        "hostname": "packer-test"
+    },
+
+    "builders": [{
+        "type": "virtualbox",
+        "guest_os_type": "Ubuntu_64",
+
+        "disk_size" : 10000,
+
+        "iso_url": "http://releases.ubuntu.com/precise/ubuntu-12.04.3-server-amd64.iso",
+        "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
+        "iso_checksum_type": "md5",
+
+        "ssh_username": "{{user `ssh_name`}}",
+        "ssh_password": "{{user `ssh_pass`}}",
+        "ssh_wait_timeout": "20m",
+
+        "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
+
+        "boot_command" : [
+            "<esc><esc><enter><wait>",
+            "/install/vmlinuz noapic ",
+            "preseed/url={{user `preseed`}}",
+            "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+            "hostname={{user `hostname`}}",
+            "fb=false debconf/frontend=noninteractive ",
+            "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+            "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+            "initrd=/install/initrd.gz -- <enter>"
+        ]
+    }]
+}
+```
