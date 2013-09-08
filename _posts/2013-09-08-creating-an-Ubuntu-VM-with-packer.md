@@ -48,8 +48,8 @@ Now, armed with this information, we start by creating the Packer template. Letâ
         "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
         "iso_checksum_type": "md5",
 
-        "ssh_username": "{{user `ssh_name`}}",
-        "ssh_password": "{{user `ssh_pass`}}",
+        "ssh_username": "{{ "{{user `ssh_name`"}}}}",
+        "ssh_password": "{{ "{{user `ssh_pass`"}}}}",
         "ssh_wait_timeout": "20m",
 
         "shutdown_command": "echo {{ "{{user `ssh_pass`"}}}} | sudo -S shutdown -P now",
