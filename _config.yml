@@ -9,6 +9,9 @@ exclude:
 - .gitignore
 - README.md
 prose:
+  rooturl: "_posts"
+  siteurl: "http://kappataumu.com"
+  media: "uploads"
   metadata:
     _posts:
       - name: "layout"
