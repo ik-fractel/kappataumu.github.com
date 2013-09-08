@@ -84,16 +84,6 @@ d-i debian-installer/locale string en_US.UTF-8
 d-i localechooser/preferred-locale string en_US.UTF-8
 d-i localechooser/supported-locales en_US.UTF-8
 
-# Some inspiration:
-# * https://github.com/chrisroberts/vagrant-boxes/blob/master/definitions/precise-64/preseed.cfg
-# * https://github.com/cal/vagrant-ubuntu-precise-64/blob/master/preseed.cfg
-
-# English plx
-d-i debian-installer/language string en
-d-i debian-installer/locale string en_US.UTF-8
-d-i localechooser/preferred-locale string en_US.UTF-8
-d-i localechooser/supported-locales en_US.UTF-8
-
 # Including keyboards
 d-i console-setup/ask_detect boolean false
 d-i keyboard-configuration/layout select USA
