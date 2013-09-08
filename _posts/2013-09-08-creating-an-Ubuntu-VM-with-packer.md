@@ -11,3 +11,20 @@ Trying to build a simple Ubuntu image was not without digging around, even thoug
 ![packer_splash.jpg](/_posts/packer_splash.jpg)
 
 Packer is driven by template files, so the first thing we need to do is create a Packer template. These are JSON documents that let Packer know what you want built, and how (and other things that are outside the scope of this guide). There can be a few discrete sections in each template, but let’s focus on the most prominent one. Instantiating a “builder” (in our case a VirtualBox builder) to create a VirtualBox image.
+
+Roughly speaking, the building process takes an ISO you have specified and uses it to create a full-blown installation of the OS. This is accomplished by mounting the ISO, booting off it, dealing with the OS installer initial UI, and proceeding with an unattended installation. If everything goes well, we then have a functional, bootable VM image. 
+
+The crucial parts here are two:
+
+* Dealing with the Ubuntu installer initial UI.
+* Completing a hands-off installation.
+
+Both issues can be dealt with the boot_command option. 
+
+This is an array of commands that are sent to the graphical Ubuntu installer as if you were typing them at a physical keyboard. In our case, we need to bypass the graphical installer (by typing <esc><esc><enter>), drop to the boot prompt and then type some configuration directives there. 
+
+One of these commands will instruct the Ubuntu installer to fetch a preconfiguration file (preseed.cfg) from the web, that will automatically provide answers to the installer prompts, thus automating the installation in its entirety. You can find more information on preseeding here [1] and here [2]. Of course this file will have to be created and tailored to your needs and then uploaded somewhere. You will find a fully working example further below.
+
+Do note that due to missing CA certs, the preconfiguration file is best served from a non-https URL [3]. Keep this in mind if you were thinking of simply hosting it off a GitHub repo.
+
+Now, armed with this information, we start by creating the Packer template. Let’s name it ubuntu_64.json and place it in the same directory as Packer itself. Take a look at mine: 
