@@ -167,4 +167,4 @@ Now we can finally build the image:
 
 ![conemu_packer_updated.png](/uploads/conemu_packer_updated.png)
 
-So there you have it! Now we can login and play. Keep in mind that by default the host cannot communicate directly with the guest, because the guest's connection is NATed. You need to modify the VM properties so that the active network adapter is bridged. Then the guest can get a DHC lease from your network and be accessible from any other computer.
+So there you have it! Now we can login and play. Keep in mind that by default the host cannot communicate directly with the guest, because the guest sits in its own subnet, behind NAT. You need to modify the VM properties so that the active network adapter is bridged. Then the guest can get a DHC lease from your network and be accessible from any other computer.
