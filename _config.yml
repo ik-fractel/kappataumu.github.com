@@ -1,8 +1,6 @@
 markdown: redcarpet
 pygments: true
 
-auto: true
-server: true
 permalink: none
 baseurl: "http://kappataumu.com"
 exclude:
