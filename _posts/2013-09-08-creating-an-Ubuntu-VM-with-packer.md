@@ -78,7 +78,7 @@ Let’s name the template `ubuntu_64.json` and place it in the folder you previo
 }
 ```
 
-Remember that you can always validate the correctness of the template by running packer validate ubuntu_64.json
+Remember that you can always validate the correctness of the template by running `packer validate ubuntu_64.json`
 
 Next up, `preseed.cfg`, the file used to preconfigure the installer:
 
