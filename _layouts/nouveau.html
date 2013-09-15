@@ -27,6 +27,14 @@
         ga('send', 'pageview');
     </script>
 
+    <script>
+        window.onload = function () {
+            //alert(this.location.pathname);
+            document.querySelector('li > a[href="' + this.location.pathname + '"]')
+                .parentNode.setAttribute("class", "active");;
+        };
+    </script>
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -54,8 +62,8 @@
 
                 <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Posts</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="/">Posts</a></li>
+                        <li><a href="/about.html">About</a></li>
                     </ul>
                 </div>
             </nav>
@@ -74,7 +82,7 @@
         <div class="row credits">
             <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                 <span>Copyright &copy; 2013</span>
-                <span class="pull-right">Colophon</span>
+                <span class="pull-right"><span>Handcrafted by <a href="http://twitter.com/kappataumu">@kappataumu</a></span>
             </div>
         </div> <!--/.row,.credits-->
     </div> <!--/.container-->
