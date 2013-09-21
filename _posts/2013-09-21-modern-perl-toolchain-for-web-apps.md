@@ -2,7 +2,7 @@
 author_twitter: kappataumu
 author: kappataumu
 category: articles
-description: "A straightforward guide to get you from zero to working VirtualBox Ubuntu 12.04 LTS virtual machine image. In under 10 minutes and with minimal fuss."
+description: "A modern Perl toolchain sing plenv, cpanm and carton to manage and deploy Perl web apps, version controlled with Git."
 title: "Modern Perl toolchain for Git managed web apps"
 layout: nouveau_article
 published: true
