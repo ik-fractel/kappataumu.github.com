@@ -168,3 +168,6 @@ _site/*
 # Komodo project files
 *.komodoproject
 *.kpf
+
+node_modules/
+_site/
