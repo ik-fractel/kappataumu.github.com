@@ -2,16 +2,18 @@
 author_twitter: kappataumu
 author: kappataumu
 category: articles
-description: "A very basic introduction to Grunt, automating LESS compilation as files change."
+description: "A very basic introduction to Grunt for web development, automating LESS compilation as files change."
 title: "Simple automation for web developers, using Grunt"
 layout: nouveau_article
 published: true
 ---
 
+[Grunt, the JavaScript task runner](http://gruntjs.com/), is an excellent tool to automate boring, repetitive stuff. With a plethora of plugins, and a thriving community around it, you'll find it's a great weapon for your webdev arsenal. I'd go as far as saying that it's invaluable for any moderately complex web project. Once you spend a bit of time on it, you'll be able to compile your LESS, concatenate, compress and optimize your CSS, minify and combine your JavaScript files, keep separate builds for production and development, deploy your kids to school after they have breakfast and even more!
 
 
+Let's begin by installing some needed tools.
 
-Install node.js
+###Install node.js
 
 ```bash
 $ cd ~
@@ -25,7 +27,7 @@ $ node -v
 ```
 
 
-Install Grunt
+###Install Grunt
 
 ```bash
 $ sudo npm install grunt-cli
@@ -34,7 +36,7 @@ $ sudo npm install grunt
 
 Now, in order to do anything useful we must install Node modules for the tasks we envision to use Grunt for. For instance, if we are using [LESS](http://lesscss.org/), a good starting point would be a module for automatic compilation of LESS stylesheets to plain CSS every time the `.less` file is saved.
 
-These Node modules (essentially Grunt plugins) will be catalogued by NPM during their installation in a file named `package.json` inside the root of our project. Let’s create this file, with the following contents:
+These Node modules (essentially [Grunt plugins](http://gruntjs.com/plugins)) will be catalogued by `npm` during their installation in a file named `package.json` inside the root of our project. Let’s create this file, with the following contents:
 
 ```json
 {
