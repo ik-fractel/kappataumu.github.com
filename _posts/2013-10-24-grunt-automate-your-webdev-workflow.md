@@ -30,13 +30,13 @@ $ node -v
 ###Install Grunt
 
 ```bash
-$ sudo npm install grunt-cli
+$ sudo npm install -g grunt-cli
 $ sudo npm install grunt
 ```
 
-Now, in order to do anything useful we must install Node modules for the tasks we envision to use Grunt for. For instance, if we are using [LESS](http://lesscss.org/), a good starting point would be a module for automatic compilation of LESS stylesheets to plain CSS every time the `.less` file is saved.
+Now, in order to do anything useful we must install NodeJS modules for the tasks we envision to use Grunt for. For instance, if we are using [LESS](http://lesscss.org/), a good starting point would be a module for automatic compilation of LESS stylesheets to plain CSS every time the `.less` file is saved.
 
-These Node modules (essentially [Grunt plugins](http://gruntjs.com/plugins)) will be catalogued by `npm` during their installation in a file named `package.json` inside the root of our project. Let’s create this file, with the following contents:
+These NodeJS modules (essentially [Grunt plugins](http://gruntjs.com/plugins)) will be catalogued after their installation by `npm`, the NodeJS package manager (comes with NodeJS by default these days), in a file named `package.json` inside the root of our project. Let’s move to that directory and create this file, with the following contents:
 
 ```json
 {
@@ -56,15 +56,15 @@ Perusing the popular Node plugins, we need to locate something to monitor our `.
 Intuitively, we also need to install the actual LESS compiler, `lessc`. Let’s start with that:
 
 ```bash
-sudo npm install -g less
-lessc --version
+$ sudo npm install -g less
+$ lessc --version
 ```
 
 Next, installation of the two Grunt plugins we located earlier:
 
 ```bash
-npm install grunt-contrib-less --save-dev
-npm install grunt-contrib-watch --save-dev
+$ npm install grunt-contrib-less --save-dev
+$ npm install grunt-contrib-watch --save-dev
 ```
 
 The `--save-dev` parameter captures our dependency on this plugin in `package.json`. Here is what it looks like after installing the plugins:
@@ -87,16 +87,15 @@ Now let’s move on to `Gruntfile.js`, the actual configuration of Grunt. First,
 
 ```javascript
 module.exports = function(grunt) {
-  grunt.initConfig({
-     // named tasks will go here
-  });
+    grunt.initConfig({
+       // named tasks will go here
+    });
 
-grunt.loadNpmTasks('grunt-contrib-less');
-grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-// the default task can be run just by typing "grunt" on the command line
-grunt.registerTask('default', ['watch']);
-
+    // the default task can be run just by typing "grunt" on the command line
+    grunt.registerTask('default', ['watch']);
 };
 ```
 
