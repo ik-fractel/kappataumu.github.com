@@ -124,7 +124,7 @@ watch: {
         options: {
     		spawn: false
         },
-        files: [ "assets/public/css/*.css": "assets/public/css/*.less"],
+        files: [ "assets/public/css/*.css", "assets/public/css/*.less"],
         tasks: [ "less" ]
     }
 }
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
                     spawn: false,
                     event: ["added", "deleted", "changed"]
                 },
-                files: [ "assets/public/css/*.css": "assets/public/css/*.less"],
+                files: [ "assets/public/css/*.css", "assets/public/css/*.less"],
                 tasks: [ "less" ]
             }
         }
