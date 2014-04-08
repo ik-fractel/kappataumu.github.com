@@ -25,9 +25,9 @@ Both issues can be dealt with the `boot_command` option.
 
 This is an array of commands that are sent to the graphical Ubuntu installer as if you were typing them at a physical keyboard. In our case, we need to bypass the graphical installer (by typing `ESC` `ESC` `ENTER`), drop to the boot prompt and then type some configuration directives there.
 
-One of these commands will instruct the Ubuntu installer to fetch a preconfiguration file (preseed.cfg) from a local web server Packer has spun-up, that will automatically provide answers to the installer prompts, thus automating the installation in its entirety. You can find more information on preseeding here [1] and here [2]. Of course this file will have to be created and tailored to your needs, but you will find a fully working example further below.
+One of these commands will instruct the Ubuntu installer to fetch a preconfiguration file (preseed.cfg) from a local web server Packer has spun-up, that will automatically provide answers to the installer prompts, thus automating the installation in its entirety. You can find more information on preseeding [here](https://help.ubuntu.com/community/InstallCDCustomization) and [here](https://help.ubuntu.com/12.04/installation-guide/i386/appendix-preseed.html). Of course this file will have to be created and tailored to your needs, but you will find a fully working example further below.
 
-Do note that due to missing CA certs, the preconfiguration file is best served from a non-https URL [3]. Keep this in mind if you were thinking of not using the Packer web server and linking to, for instance, a GitHub repo.
+Do note that due to missing CA certs, the preconfiguration file is best served from [a non-https URL](https://groups.google.com/forum/#!msg/packer-tool/rUPi8fhGjhY/ZjuVd4QBKX0J). Keep this in mind if you were thinking of not using the Packer web server and linking to, for instance, a GitHub repo.
 
 Now, armed with this information, we start by creating the Packer template. Before anything else, create a folder inside the packer directory named `ubuntu_64` to store the template and the Ubuntu preconfiguration file. This will also be the directory Packer will make available over http to the VM while it is created.
 
@@ -170,3 +170,8 @@ Now we can finally build the image:
 ![conemu_packer_updated.png](/uploads/conemu_packer_updated.png)
 
 So there you have it! Now we can login and play. Keep in mind that by default the host cannot communicate directly with the guest, because the guest sits in its own subnet, behind NAT. You need to modify the VM properties so that the active network adapter is bridged. Then the guest can get a DHC lease from your network and be accessible from any other computer.
+
+References:
+1)
+2)
+3)
