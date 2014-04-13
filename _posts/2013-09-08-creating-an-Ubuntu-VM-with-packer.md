@@ -8,6 +8,8 @@ layout: nouveau_article
 published: true
 ---
 
+(Updated for packer v0.5.2)
+
 Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast.
 
 ![packer_splash.jpg](/uploads/packer_splash.jpg)
@@ -42,7 +44,7 @@ Let’s name the template `ubuntu_64.json` and place it in the folder you previo
     },
 
     "builders": [{
-        "type": "virtualbox",
+        "type": "virtualbox-iso",
         "guest_os_type": "Ubuntu_64",
 
         "vboxmanage": [
@@ -170,3 +172,34 @@ Now we can finally build the image:
 ![conemu_packer_updated.png](/uploads/conemu_packer_updated.png)
 
 So there you have it! Now we can login and play. Keep in mind that by default the host cannot communicate directly with the guest, because the guest sits in its own subnet, behind NAT. You need to modify the VM properties so that the active network adapter is bridged. Then the guest can get a DHCP lease from your network and be accessible from any other computer.
+
+You can do this without leaving the shell by first getting a list of the available local interfaces suitable for bridging (here you can see mine) and then instructing vbox to assign one to the VM that was just built. What we need to note is the interface's "Name", which is what we'll provide to vboxmanage:
+
+```
+$> vboxmanage list bridgedifs
+Name:            Intel(R) Ethernet Connection I217-V
+GUID:            //
+DHCP:            Enabled
+IPAddress:       192.168.1.12
+NetworkMask:     255.255.255.0
+IPV6Address:     //
+IPV6NetworkMaskPrefixLength: 64
+HardwareAddress: //
+MediumType:      Ethernet
+Status:          Up
+VBoxNetworkName: HostInterfaceNetworking-Intel(R) Ethernet Connection I217-V
+
+Name:            TeamViewer VPN Adapter
+GUID:            //
+DHCP:            Enabled
+IPAddress:       169.254.84.20
+NetworkMask:     15.0.0.0
+IPV6Address:     //
+IPV6NetworkMaskPrefixLength: 64
+HardwareAddress: //
+MediumType:      Ethernet
+Status:          Down
+VBoxNetworkName: HostInterfaceNetworking-TeamViewer VPN Adapter
+
+$> vboxmanage modifyvm your-vm-name-here --nic1 bridged --bridgeadapter1 "Intel(R) Ethernet Connection I217-V"
+```
