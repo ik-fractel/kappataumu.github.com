@@ -8,9 +8,7 @@ layout: nouveau_article
 published: true
 ---
 
-(Updated for packer v0.5.2)
-
-Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast.
+Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast. *(Updated for packer v0.5.2)*
 
 ![packer_splash.jpg](/uploads/packer_splash.jpg)
 
