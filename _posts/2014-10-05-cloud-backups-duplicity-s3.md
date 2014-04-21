@@ -147,9 +147,9 @@ unset AWS_SECRET_ACCESS_KEY
 Don’t forget to set appropriate file permissions for `.credentials.conf` and `backup.sh`; only root should be able to read or execute them:
 
 ```bash
-$ chown root:root ~/.duplicity.conf
+$ chown root:root ~/.credentials.conf
 $ chown root:root ~/.backup.sh
-$ chmod 0600 ~/.duplicity.conf
+$ chmod 0600 ~/.credentials.conf
 $ chmod 0700 ~/.backup.sh
 ```
 
