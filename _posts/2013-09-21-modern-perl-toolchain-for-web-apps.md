@@ -7,6 +7,9 @@ title: "Modern Perl toolchain for Git managed web apps"
 layout: nouveau_article
 published: true
 ---
+
+*Updated: 2014-10-30*
+
 Separation of concerns has always been a key issue for me as a developer, often going to great lengths for compartmentalization and clearly defined boundaries. A macro example of this is using VMs for development; it has improved my productivity immensely because the host OS is decoupled from the dependencies of the projects i am working on.
 
 But this also trickles down inside VMs. Working with Linux, i’ve found that keeping the system as pristine as possible after installation is a good thing. When working with Perl, I set the following objectives:
@@ -44,6 +47,7 @@ $ exec $SHELL -l
 $ git clone git://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
 $ plenv install 5.18.0
 $ plenv rehash
+$ plenv global 5.18.0
 ```
 At this point we have Perl 5.18.0 installed in our home directory but aren’t using it anywhere. The system’s Perl is intact. Moving on.
 
@@ -51,11 +55,21 @@ At this point we have Perl 5.18.0 installed in our home directory but aren’t u
 ```bash
 $ plenv install-cpanm
 ```
+Note that this installs cpanm into the current global Perl. As you saw above, i've set this to Perl 5.18.0 which resides in our home directory and is managed by `plenv`. If for any reason you revert to the system Perl and try to execute `cpanm`, `plenv` will warn you that it is not available (and show which Perl you'll need to switch to, to get it).
+
+```bash
+$ cpanm
+plenv: cpanm: command not found
+
+The `cpanm' command exists in these Perl versions:
+  5.18.0
+```
 
 ## Installing Carton
 ```bash
 $ cpanm Carton
 ```
+
 
 Alright, now our kit is complete. Let’s create a directory structure to house our Mojolicious web app.
 
@@ -153,4 +167,3 @@ Server available at http://127.0.0.1:3000.
 ```
 
 Success! Next time we’ll see how `carton` can also help with deploying this application to other machines.
-
