@@ -2,7 +2,7 @@ markdown: redcarpet
 highlighter: pygments
 
 permalink: none
-baseurl: "http://kappataumu.com"
+
 exclude:
 - .gitignore
 - README.md
