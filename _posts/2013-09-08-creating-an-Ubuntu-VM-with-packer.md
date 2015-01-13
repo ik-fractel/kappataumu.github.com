@@ -201,3 +201,5 @@ VBoxNetworkName: HostInterfaceNetworking-TeamViewer VPN Adapter
 
 $> vboxmanage modifyvm your-vm-name-here --nic1 bridged --bridgeadapter1 "Intel(R) Ethernet Connection I217-V"
 ```
+
+If you found this interesting, you should also check out this other post of mine, [Vagrant, Jekyll and Github Pages for streamlined content creation](http://kappataumu.com/articles/vagrant-jekyll-github-pages-streamlined-content-creation.html). By enabling the appropriate post-processor, you can use Packer to [create your own images for Vagrant](https://www.packer.io/intro/getting-started/vagrant.html).

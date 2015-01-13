@@ -182,3 +182,5 @@ You can try this immediately by cloning the [companion repository i've put up on
 $ git clone https://github.com/kappataumu/vagrant-up-github-pages
 $ vagrant up
 ```
+
+If you found this interesting, you should also check out this other post of mine, [Packer: In 10 minutes, from zero to bootable VirtualBox Ubuntu 12.04](http://kappataumu.com/articles/creating-an-Ubuntu-VM-with-packer.html). By enabling the appropriate post-processor, you can use Packer to [create your own images for Vagrant](https://www.packer.io/intro/getting-started/vagrant.html).
