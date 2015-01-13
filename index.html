@@ -8,19 +8,22 @@ description: "Where @kappataumu writes about computers and stuff. Don't be shy, 
 
 {% for item in site.categories.articles limit:40 offset:0 %}
 
-        <article>
+    <article>
         <h1>
             <a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
                 {{item.title}}
             </a>
         </h1>
-            {{ item.excerpt }}
-            <span class="label label-info read-more"><a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
+
+        {{ item.excerpt }}
+
+        <span class="label label-info read-more">
+            <a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
                 Read more
-            </a></span>
+            </a>
+        </span>
     </article>
 
 {% endfor %}
 
 </div>
-
