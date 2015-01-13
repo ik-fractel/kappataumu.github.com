@@ -2,7 +2,7 @@
 author_twitter: kappataumu
 author: kappataumu
 category: articles
-description: "Vagrant can be an absolute lifesavior for developers. It is lightweight, available everywhere (Linux, Mac, Windows), and can do wonders for your productivity by allowing you to easily compartmentalize diverse development environments."
+description: "Vagrant can be an absolute lifesaver for developers. It is lightweight, available everywhere (Linux, Mac, Windows), and can do wonders for your productivity by allowing you to easily compartmentalize diverse development environments."
 layout: nouveau_article
 published: true
 title: "Vagrant, Jekyll and Github Pages for streamlined content creation"
@@ -29,8 +29,7 @@ For our very simple purposes though, a bash script will suffice. I've only added
 
 ```bash
 #!/bin/bash
-# This provisioning script has been derived from VVV. It accompanies the
-# article which can be found on XXX link
+# This provisioning script has been derived from VVV.
 
 CLONEREPO='https://github.com/kappataumu/kappataumu.github.com.git'
 CLONEDIR="$(basename $CLONEREPO)"
