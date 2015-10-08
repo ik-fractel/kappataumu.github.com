@@ -6,6 +6,7 @@ description: "Vagrant can be an absolute lifesaver for developers. It is lightwe
 layout: nouveau_article
 published: true
 title: "Vagrant, Jekyll and Github Pages for streamlined content creation"
+updated: 2015-10-8
 ---
 
 [Vagrant](https://www.vagrantup.com/) can be an absolute lifesaver for developers. It is lightweight, available everywhere (Linux, Mac, Windows), and can do wonders for your productivity by allowing you to easily compartmentalize diverse development environments.
@@ -29,17 +30,20 @@ For our very simple purposes though, a bash script will suffice. I've only added
 
 ```bash
 #!/bin/bash
-# This provisioning script has been derived from VVV.
+#
+# This provisioning script has been derived from Varying Vagrant Vagrants:
+# https://github.com/Varying-Vagrant-Vagrants/VVV
+#
 
-CLONEREPO='https://github.com/kappataumu/kappataumu.github.com.git'
-CLONEDIR="$(basename $CLONEREPO)"
+CLONEREPO='XXX'
+CLONEDIR="/srv/www/$(basename $CLONEREPO)"
 
 start_seconds="$(date +%s)"
 echo "Welcome to the initialization script."
 
 ping_result="$(ping -c 2 8.8.4.4 2>&1)"
 if [[ $ping_result != *bytes?from* ]]; then
-	echo "Network connection unavailable. Try again later."
+  echo "Network connection unavailable. Try again later."
     exit 1
 fi
 
@@ -54,16 +58,16 @@ apt_package_check_list=(
 # not yet installed, it should be added to the array of packages to install.
 apt_package_install_list=()
 for pkg in "${apt_package_check_list[@]}"; do
-	package_version="$(dpkg -s $pkg 2>&1 | grep 'Version:' | cut -d " " -f 2)"
-	if [[ -n "${package_version}" ]]; then
-		space_count="$(expr 20 - "${#pkg}")" #11
-		pack_space_count="$(expr 30 - "${#package_version}")"
-		real_space="$(expr ${space_count} + ${pack_space_count} + ${#package_version})"
-		printf " * $pkg %${real_space}.${#package_version}s ${package_version}\n"
-	else
-		echo " *" $pkg [not installed]
-		apt_package_install_list+=($pkg)
-	fi
+  package_version="$(dpkg -s $pkg 2>&1 | grep 'Version:' | cut -d " " -f 2)"
+  if [[ -n "${package_version}" ]]; then
+    space_count="$(expr 20 - "${#pkg}")" #11
+    pack_space_count="$(expr 30 - "${#package_version}")"
+    real_space="$(expr ${space_count} + ${pack_space_count} + ${#package_version})"
+    printf " * $pkg %${real_space}.${#package_version}s ${package_version}\n"
+  else
+    echo " *" $pkg [not installed]
+    apt_package_install_list+=($pkg)
+  fi
 done
 
 
@@ -80,8 +84,8 @@ else
 
     sudo add-apt-repository -y ppa:git-core/ppa
 
-    # Needed for nodejs
-    curl -sL https://deb.nodesource.com/setup | sudo bash -
+    # Needed for nodejs.
+    wget -q -O - https://deb.nodesource.com/setup | sudo bash -
 
     sudo apt-get update --assume-yes > /dev/null
 
@@ -112,6 +116,10 @@ if [[ ! -d '/srv/www' ]]; then
     sudo mkdir '/srv/www'
 fi
 
+# Our favorite user group for web stuff. These commands are idempotent.
+#sudo chgrp www-data /srv/www
+#sudo chmod g+rws /srv/www
+
 # Time to pull the repo. If the directory is there, we do nothing,
 # since git should be used to push/pull commits instead.
 if [[ ! -d "$CLONEDIR" ]]; then
@@ -119,8 +127,7 @@ if [[ ! -d "$CLONEDIR" ]]; then
 fi
 
 # Now, for the Jekyll part
-cd "$CLONEDIR"
-jekyll serve --detach
+jekyll serve --source "$CLONEDIR" --detach
 
 end_seconds="$(date +%s)"
 echo "-----------------------------"
