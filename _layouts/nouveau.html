@@ -24,11 +24,11 @@
     </script>
 
     <script>
-        window.onload = function () {
-            //alert(this.location.pathname);
-            document.querySelector('li > a[href="' + this.location.pathname + '"]')
-                .parentNode.setAttribute("class", "active");;
-        };
+        document.addEventListener("DOMContentLoaded", function(e) { 
+          path = this.location.pathname;
+          if (path.slice(0, '/article'.length) == '/article') path = '/';
+          document.querySelector('li > a[href="' + path + '"]').parentNode.setAttribute("class", "active");
+        });
     </script>
 
     <!--[if lt IE 9]>
