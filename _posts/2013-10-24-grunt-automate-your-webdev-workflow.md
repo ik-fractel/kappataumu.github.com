@@ -6,6 +6,7 @@ description: "A very basic Grunt tutorial for web developers: Automating LESS co
 title: "Simple automation for web developers, using Grunt"
 layout: nouveau_article
 published: true
+updated: 2016-01-03
 ---
 
 [Grunt, the JavaScript task runner](http://gruntjs.com/), is an excellent tool to automate boring, repetitive stuff. With a plethora of plugins, and a thriving community around it, you'll find it's a great weapon for your webdev arsenal. I'd go as far as saying that it's invaluable for any moderately complex web project. Once you spend a bit of time on it, you'll be able to compile your LESS, concatenate, compress and optimize your CSS, minify and combine your JavaScript files, keep separate builds for production and development, deploy your kids to school after they have breakfast and even more!
@@ -17,13 +18,9 @@ Let's begin by installing some needed tools.
 
 ```bash
 $ cd ~
-$ wget http://nodejs.org/dist/v0.10.21/node-v0.10.21.tar.gz
-$ tar -xvzf node-v0.10.21.tar.gz
-$ cd node-v0.10.21/
-$ ./configure
-$ make
-$ sudo make install
-$ node -v
+$ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ sudo apt-get install -y nodejs build-essential
+$ npm --version
 ```
 
 
@@ -43,7 +40,7 @@ These NodeJS modules (essentially [Grunt plugins](http://gruntjs.com/plugins)) w
   "name": "my-project-name",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.5"
   }
 }
 ```
@@ -74,9 +71,9 @@ The `--save-dev` parameter captures our dependency on this plugin in `package.js
   "name": "my-project-name",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-less": "~0.8.0",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt": "~0.4.5",
+    "grunt-contrib-less": "~1.1.0",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }
 ```
