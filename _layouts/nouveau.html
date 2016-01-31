@@ -11,9 +11,9 @@
 
     <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
 
-    <link href="/nouveau/css/main.css" rel="stylesheet">
+    <link href="/nouveau/css/main.css?v=2" rel="stylesheet">
 
-    <script>
+    <!-- <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -21,10 +21,10 @@
 
         ga('create', 'UA-43374106-1', 'kappataumu.com');
         ga('send', 'pageview');
-    </script>
+    </script> -->
 
     <script>
-        document.addEventListener("DOMContentLoaded", function(e) { 
+        document.addEventListener("DOMContentLoaded", function(e) {
           path = this.location.pathname;
           if (path.slice(0, '/article'.length) == '/article') path = '/';
           document.querySelector('li > a[href="' + path + '"]').parentNode.setAttribute("class", "active");
@@ -36,66 +36,57 @@
     <![endif]-->
 
 </head>
+
 <body>
-
-    <div class="footer-flusher">
-
     <div class="container">
-
         <div class="row">
-            <nav class="navbar navbar-default col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1" role="navigation">
-                <div class="navbar-header"> <!-- Wraps brand and toggle -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand logotype" href="/"></a>
-                </div>
+            <nav class="navbar navbar-default col-sm-12" role="navigation">
 
-                <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/">Posts</a></li>
-                        <li><a href="/about.html">About</a></li>
-                    </ul>
-                </div>
+                <header>
+                    <input type="checkbox" id="navbar-toggle-cbox">
+                    <label for="navbar-toggle-cbox" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar icon-bar-top"></span>
+                        <span class="icon-bar icon-bar-middle"></span>
+                        <span class="icon-bar icon-bar-bottom"></span>
+                    </label>
+                    <a class="logotype" href="/"></a>
+
+                    <div id="navbar" class="navbar-collapse navbar-right collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/">Posts</a></li>
+                            <li><a href="/about.html">About</a></li>
+                        </ul>
+                    </div>
+                </header>
+
             </nav>
         </div> <!--/.row-->
 
         <div class="row">
-            <div class="main col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+            <div class="col-sm-12">
+                {{content}}
 
+                <div class="credits">
+                  <span>Copyright &copy; 2016</span>
+                  <span class="pull-right"><span>Handcrafted by <a href="http://twitter.com/kappataumu">@kappataumu</a></span>
+                </div>
 
-{{content}}
-
-
-            </div> <!--/.column-->
-        </div> <!--/.row,.main-->
-
-        <div class="row credits">
-            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                <span>Copyright &copy; 2016</span>
-                <span class="pull-right"><span>Handcrafted by <a href="http://twitter.com/kappataumu">@kappataumu</a></span>
             </div>
-        </div> <!--/.row,.credits-->
+        </div>
+
     </div> <!--/.container-->
 
 
-        <footer>
-            <div class="row">
-                <div class="col-md-2 color-01"></div>
-                <div class="col-md-2 color-02"></div>
-                <div class="col-md-3 color-03"></div>
-                <div class="col-md-2 color-04"></div>
-                <div class="col-md-3 color-05"></div>
-            </div>
+    <div class="container-fluid">
+        <footer class="row">
+            <div class="col-md-2 color-01"></div>
+            <div class="col-md-3 color-02"></div>
+            <div class="col-md-2 color-03"></div>
+            <div class="col-md-3 color-04"></div>
+            <div class="col-md-2 color-05"></div>
         </footer>
-
-
-    </div> <!--/.footer-flusher-->
-
-
+    </div>
 
 </body>
 </html>
