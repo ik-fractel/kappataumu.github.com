@@ -4,6 +4,5 @@ highlighter: pygments
 permalink: none
 
 exclude:
-  - .gitignore
   - README.md
   - node_modules
