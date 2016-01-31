@@ -6,9 +6,8 @@ description: "A modern Perl toolchain sing plenv, cpanm and carton to manage and
 title: "Modern Perl toolchain for Git managed web apps"
 layout: nouveau_article
 published: true
+updated: 2014-10-30
 ---
-
-*Updated: 2014-10-30*
 
 Separation of concerns has always been a key issue for me as a developer, often going to great lengths for compartmentalization and clearly defined boundaries. A macro example of this is using VMs for development; it has improved my productivity immensely because the host OS is decoupled from the dependencies of the projects i am working on.
 
