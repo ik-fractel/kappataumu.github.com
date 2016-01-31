@@ -2,12 +2,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
         less: {
             options: {
-                compress: true,
-                yuicompress: true,
-                optimization: 2
+                paths: ['nouveau/css'],
+                plugins: [
+                  new (require('less-plugin-clean-css'))({
+                    advanced: true,
+                    keepSpecialComments: 0,
+                    processImport: true,
+                  })
+                ],
+                optimization: 2,
             },
-            files: { 
-                "nouveau/css/main.css": "nouveau/css/main.less"
+            dist: {
+              files: {
+                  "nouveau/css/main.css": "nouveau/css/main.less"
+              }
             }
         },
         watch: {
@@ -17,7 +25,7 @@ module.exports = function(grunt) {
                     event: ["added", "deleted", "changed"]
                 },
                 files: [ "nouveau/css/*.css", "nouveau/css/*.less" ],
-                tasks: [ "less" ]
+                tasks: [ "less:dist" ]
             }
         }
     });
@@ -28,4 +36,3 @@ module.exports = function(grunt) {
     // the default task can be run just by typing "grunt" on the command line
     grunt.registerTask("default", ["watch"]);
 };
-
