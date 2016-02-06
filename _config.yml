@@ -1,8 +1,15 @@
-markdown: redcarpet
-highlighter: pygments
-
+markdown: kramdown
 permalink: none
+host: 0.0.0.0
+port: 4000
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 exclude:
-  - README.md
-  - node_modules
+    - CNAME
+    - Gruntfile.js
+    - package.json
+    - README.md
+    - node_modules/
