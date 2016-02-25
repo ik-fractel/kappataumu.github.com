@@ -14,7 +14,7 @@ updated: 2016-01-03
 
 Let's begin by installing some needed tools.
 
-###Install node.js
+## Install node.js
 
 ```bash
 $ cd ~
@@ -24,7 +24,7 @@ $ npm --version
 ```
 
 
-###Install Grunt
+## Install Grunt
 
 ```bash
 $ sudo npm install -g grunt-cli

@@ -4,24 +4,8 @@ title: "About @kappataumu"
 description: "About @kappataumu and a few details about how this site is built."
 ---
 
-WIP. Stay tuned for more info. In the meantime let's have a chat, i'm [@kappataumu](http://twitter.com/kappataumu); full stack developer, with a kink for Perl, devops, security, optimisation, "the cloud", design and frontend aspects like UI, UX. Entrepreneur. INTJ.
+Full stack developer, creating for the web. Strong emphasis on Python, Perl, DevOps, security, optimization, deploying to ---and scaling with--- the cloud, empathic design and UI/UX. Entrepreneur. INTJ. You can find me on [Twitter](https://twitter.com/kappataumu), [Github](https://github.com/kappataumu) or send me an e-mail at [hello@kappataumu.com](mailto:kappataumu.com).
 
-##Colophon
+### Colophon
 
-A detailed outline of all the tools and technologies used in creating, managing and delivering this site to you:
-
-###Design
-* HTML5 & CSS3
-* Bootstrap 3
-* Less 1.4.1
-* Jekyll ([Liquid](http://liquidmarkup.org/), [Pygments](http://pygments.org/))
-
-###Authoring
-* Markdown, using either [Prose](http://prose.io), Komodo or Vim
-
-###Version control
-* Git
-
-###Deployment
-* Hosted and served by GitHub Pages
-* Delivered by Cloudflare CDN
+I won't bore you with a detailed outline of all the tools and technologies used in creating, managing and delivering this site to you. What's most important is that everything is open source and available to anyone at zero cost. You can replicate my setup starting here: [Vagrant, Jekyll and Github Pages for streamlined content creation](http://localhost:4000/articles/vagrant-jekyll-github-pages-streamlined-content-creation.html).
