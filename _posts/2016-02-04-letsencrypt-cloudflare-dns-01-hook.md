@@ -44,7 +44,7 @@ $ export CF_KEY='K9uX2HyUjeWg5AhAb'
 Having the initial configuration out of the way, we can now make ourselves some certificates:
 
 ```
-$ letsencrypt.sh -c -d example.com -t dns-01 -k 'python hooks/cloudflare/hook.py'
+$ letsencrypt.sh -c -d example.com -t dns-01 -k 'hooks/cloudflare/hook.py'
 #
 # !! WARNING !! No main config file found, using default config!
 #
