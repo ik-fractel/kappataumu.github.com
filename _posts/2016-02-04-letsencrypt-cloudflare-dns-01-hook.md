@@ -70,7 +70,7 @@ Processing example.com
  + Done!
 ```
 
-You can paste the`ssl_certificate` and `ssl_certificate_key` lines directly into the nginx server block, which might look like this:
+You can paste the `ssl_certificate` and `ssl_certificate_key` lines directly into the nginx server block, which might look like this:
 
 ```
 server {
@@ -92,12 +92,38 @@ server {
 }
 ```
 
-Certificate renewal is merely one cron job away. You run `letsencrypt.sh` with the same parameters and reload your web server. If you have lots of domains, you can put them in `domains.txt` and omit the `-d` parameter altogether.
+Automated certificate renewal is merely one cron job away. Here's one way to go about it, using a helper script:
+
+* Put all your domain names in `letsencrypt.sh/domains.txt`.
+* Create a helper script, say `letsencrypt.sh/cron.sh`, for cron to execute:
+
+
+```
+#!/usr/bin/env bash
+
+# You could also put these in config.sh, which is
+# automatically sourced when letsencrypt.sh runs
+export CF_EMAIL='user@example.com'
+export CF_KEY='K9uX2HyUjeWg5AhAb'
+
+/home/user/letsencrypt.sh/letsencrypt.sh \
+    --cron \
+    --challenge dns-01 \
+    --hook '/home/user/letsencrypt.sh/hooks/cloudflare/hook.py'
+
+service nginx restart
+```
+
+* Finally, add the following crontab entry (will run daily at 1 AM):
+
+```
+0 1 * * * /home/user/letsencrypt.sh/cron.sh >> /home/user/letsencrypt.sh/cron.log 2>&1
+```
 
 
 ## A note on security
 
-It is your responsibility to evaluate the trustworthiness of the various ACME clients. More so Let's Encrypt itself in its capacity of certificate authority and software company. Even then, you have to make sure to put the appropriate processes in place to manage all the artifacts by way of file permissions, file ownership, service restarting privileges and so on. Skimping on these will negate all your efforts in securing a valid SSL certificate.
+It is your responsibility to evaluate the trustworthiness of the various ACME clients. More so of Let's Encrypt itself in its capacity of certificate authority and software company. Even then, you have to make sure to put the appropriate processes in place to manage all the artifacts by way of file permissions, file ownership, service restarting privileges and so on. Skimping on these will negate all your efforts in securing a valid SSL certificate.
 
 ## Where to get the code
 
