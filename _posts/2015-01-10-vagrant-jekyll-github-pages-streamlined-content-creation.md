@@ -28,135 +28,15 @@ Now it's time to install the packages and configure the host.
 
 For our very simple purposes though, a bash script will suffice. I've only added a few bells and whistles so that re-provisioning is graceful. Let's name the script `bootstrap.sh`:
 
-```bash
-#!/usr/bin/env bash
-
-: ${1?"No repo. Set the REPO environment variable and try again!"}
-clonerepo=${1}
-clonedir="/srv/www/$(basename $clonerepo)"
-
-start_seconds="$(date +%s)"
-echo "Welcome to the initialization script."
-echo "Github Pages repository to serve: $clonerepo"
-
-apt_packages=(
-    vim
-    curl
-    git-core
-    nodejs
-)
-
-ping_result="$(ping -c 2 8.8.4.4 2>&1)"
-if [[ $ping_result != *bytes?from* ]]; then
-    echo "Network connection unavailable. Try again later."
-    exit 1
-fi
-
-# Needed for nodejs.
-# https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sSL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo add-apt-repository -y ppa:git-core/ppa
-
-sudo apt-get update
-sudo apt-get upgrade
-
-echo "Installing apt-get packages..."
-sudo apt-get install -y ${apt_packages[@]}
-sudo apt-get clean
-
-# http://rvm.io/rvm/install
-gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable --ruby --quiet-curl
-source ~/.rvm/scripts/rvm
-
-# https://github.com/github/pages-gem
-gem install github-pages
-
-# Preemptively accept Github's SSH fingerprint, but only
-# if we previously haven't done so.
-fingerprint="$(ssh-keyscan -H github.com)"
-if ! grep -qs "$fingerprint" ~/.ssh/known_hosts; then
-    echo "$fingerprint" >> ~/.ssh/known_hosts
-fi
-
-# Vagrant should've created /srv/www according to the Vagrantfile,
-# but let's make sure it exists even if run directly.
-if [[ ! -d '/srv/www' ]]; then
-    sudo mkdir '/srv/www'
-    sudo chown vagrant:vagrant '/srv/www'
-fi
-
-# Time to pull the repo. If the directory is there, we do nothing,
-# since git should be used to push/pull commits instead.
-if [[ ! -d "$clonedir" ]]; then
-    git clone "$clonerepo" "$clonedir"
-fi
-
-# Now, for the Jekyll part. Due to jekyll/jekyll#3030 we need to  
-# detach Jekyll from the shell manually, if we want --watch to work.
-jekyll=$(which jekyll)
-wrapper="${jekyll/bin/wrappers}"
-log="/home/vagrant/jekyll.log"
-run="nohup $wrapper serve --source $clonedir --watch --force_polling >> $log 2>&1 &"
-eval $run
-
-cat << UPSTART | sudo tee /etc/init/jekyll.conf > /dev/null
-description "Jekyll"
-author "kappataumu <hello@kappataumu.com>"
-
-# You need Vagrant >= 1.8 to fix a regression that botched emission of this 
-# upstart event, see mitchellh/vagrant#6074 for details.
-start on vagrant-mounted MOUNTPOINT=/srv/www
-
-exec $run
-UPSTART
-
-end_seconds="$(date +%s)"
-echo "-----------------------------"
-echo "Provisioning complete in "$(expr $end_seconds - $start_seconds)" seconds"
-echo "You can now use 'less -S +F $log' to monitor Jekyll."
-```
+<script src='https://gitembed.com/https://github.com/kappataumu/vagrant-up-github-pages/blob/master/bootstrap.sh?lexer=bash'></script>
+<noscript><a href='https://github.com/kappataumu/vagrant-up-github-pages/blob/master/bootstrap.sh'>https://github.com/kappataumu/vagrant-up-github-pages/blob/master/bootstrap.sh</a></noscript>
 
 `bootstrap.sh` will fetch, build and install the needed packages, clone the specified repository and have Jekyll serve it. Nothing fancy. But still, this would require setting up a new VM/droplet/EC2 instance, or further complicating the setup of your main development machine.
 
 Vagrant takes this pain away; a very concise `Vagrantfile` is all that's needed:
 
-```ruby
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "jekyll"
-  config.vm.define "github-pages" do |base|
-  end
-
-  # Throw in our provisioning script
-  config.vm.provision "shell", path: "bootstrap.sh", privileged: false, args: ENV['REPO']
-
-  # Map localhost:4000 to port 4000 inside the VM
-  config.vm.network "forwarded_port", guest: 4000, host: 4000
-  config.vm.network "private_network", ip: "192.168.3.33"
-
-  # Create a shared folder between guest and host
-  config.vm.synced_folder "www/", "/srv/www", create: true
-
-  config.ssh.forward_agent = true
-
-  # VirtualBox-specific configuration
-  config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", 512]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-  end
-
-end
-```
+<script src='https://gitembed.com/https://github.com/kappataumu/vagrant-up-github-pages/blob/master/Vagrantfile?lexer=rb'></script>
+<noscript><a href='https://github.com/kappataumu/vagrant-up-github-pages/blob/master/Vagrantfile'>https://github.com/kappataumu/vagrant-up-github-pages/blob/master/Vagrantfile</a></noscript>
 
 Just like that, a suitable VM is brought up for you, port forwarding is arranged and the repo folder is exposed to the host. We can edit the files in the repository with our favorite editor, and browse to [http://localhost:4000](http://localhost:4000) to preview the results.
 
