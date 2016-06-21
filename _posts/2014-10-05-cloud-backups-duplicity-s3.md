@@ -1,6 +1,4 @@
 ---
-author_twitter: kappataumu
-author: kappataumu
 category: articles
 description: "If you've never been hit by catastrophe it's easy to dismiss taking regular backups as a nice-to-have instead of the absolute necessity it is. We need to fix this. We’ll use Duplicity to instrument our backups, which will be encrypted on the server and subsequently pushed to Amazon S3."
 layout: nouveau_article

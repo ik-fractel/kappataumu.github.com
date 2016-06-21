@@ -1,6 +1,4 @@
 ---
-author_twitter: kappataumu
-author: kappataumu
 category: articles
 description: "A straightforward guide to get you from zero to working VirtualBox Ubuntu 12.04 LTS virtual machine image. In under 10 minutes and with minimal fuss."
 title: "Packer: In 10 minutes, from zero to bootable VirtualBox Ubuntu 12.04"

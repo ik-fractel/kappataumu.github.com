@@ -1,6 +1,4 @@
 ---
-author_twitter: kappataumu
-author: kappataumu
 category: articles
 description: "Vagrant can be an absolute lifesaver for developers. It is lightweight, available everywhere (Linux, Mac, Windows), and can do wonders for your productivity by allowing you to easily compartmentalize diverse development environments."
 layout: nouveau_article

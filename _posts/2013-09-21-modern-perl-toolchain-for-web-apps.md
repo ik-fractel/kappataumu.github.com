@@ -1,6 +1,4 @@
 ---
-author_twitter: kappataumu
-author: kappataumu
 category: articles
 description: "A modern Perl toolchain sing plenv, cpanm and carton to manage and deploy Perl web apps, version controlled with Git."
 title: "Modern Perl toolchain for Git managed web apps"

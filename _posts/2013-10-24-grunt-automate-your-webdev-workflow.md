@@ -1,6 +1,4 @@
 ---
-author_twitter: kappataumu
-author: kappataumu
 category: articles
 description: "A very basic Grunt tutorial for web developers: Automating LESS compilation as monitored files change."
 title: "Simple automation for web developers, using Grunt"
