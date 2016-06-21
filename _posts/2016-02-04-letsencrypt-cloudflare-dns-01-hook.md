@@ -1,7 +1,6 @@
 ---
 category: articles
 description: "How to get free SSL certificates from Let's Encrypt utilizing the letsencrypt.sh ACME client with a dns-01 challenge and a custom CloudFlare hook."
-layout: nouveau_article
 published: true
 title: "From StartSSL to Let's Encrypt, using CloudFlare DNS"
 ---

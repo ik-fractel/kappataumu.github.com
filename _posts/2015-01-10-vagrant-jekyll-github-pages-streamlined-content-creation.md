@@ -1,7 +1,6 @@
 ---
 category: articles
 description: "Vagrant can be an absolute lifesaver for developers. It is lightweight, available everywhere (Linux, Mac, Windows), and can do wonders for your productivity by allowing you to easily compartmentalize diverse development environments."
-layout: nouveau_article
 published: true
 title: "Vagrant, Jekyll and Github Pages for streamlined content creation"
 updated: 2015-12-31

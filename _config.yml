@@ -6,10 +6,18 @@ port: 4000
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-
+  
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "nouveau_article"
+      
 exclude:
-    - CNAME
-    - Gruntfile.js
-    - package.json
-    - README.md
-    - node_modules/
+  - CNAME
+  - Gruntfile.js
+  - package.json
+  - README.md
+  - node_modules/

@@ -1,7 +1,6 @@
 ---
 category: articles
 description: "Consistently finding time and energy to blog is hard. Not only life happens, there is also a strong urge to optimise everything before you even start; finding the perfect tools and processes to, well, put pixels on a screen."
-layout: nouveau_article
 published: true
 title: "A more involved hello-world"
 ---
