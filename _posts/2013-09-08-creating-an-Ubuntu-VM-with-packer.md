@@ -6,6 +6,7 @@ description: "A straightforward guide to get you from zero to working VirtualBox
 title: "Packer: In 10 minutes, from zero to bootable VirtualBox Ubuntu 12.04"
 layout: nouveau_article
 published: true
+updated: 2015-01-13
 ---
 
 Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast. **(Updated for packer v0.5.2)**
