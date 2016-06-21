@@ -1,9 +1,9 @@
 ---
-title: "From StartSSL to Let's Encrypt, using CloudFlare DNS"
-description: "How to get free SSL certificates from Let's Encrypt utilizing the letsencrypt.sh ACME client with a dns-01 challenge and a custom CloudFlare hook."
 category: articles
+description: "How to get free SSL certificates from Let's Encrypt utilizing the letsencrypt.sh ACME client with a dns-01 challenge and a custom CloudFlare hook."
 layout: nouveau_article
 published: true
+title: "From StartSSL to Let's Encrypt, using CloudFlare DNS"
 ---
 
 End-to-end encryption is a great thing for the web, even if the current system is [fundamentally broken](https://www.youtube.com/watch?v=Z7Wl2FW2TcA). I'm not going to bore you with all the nitty-gritty details, since i'm pretty sure that if you're reading this we're in agreement, possibly on both accounts. What's important is that [Let's Encrypt](https://letsencrypt.org/) eliminated the monetary cost of acquiring SSL certificates.

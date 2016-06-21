@@ -1,9 +1,9 @@
 ---
 category: articles
 description: "A very basic Grunt tutorial for web developers: Automating LESS compilation as monitored files change."
-title: "Simple automation for web developers, using Grunt"
 layout: nouveau_article
 published: true
+title: "Simple automation for web developers, using Grunt"
 updated: 2016-01-03
 ---
 
