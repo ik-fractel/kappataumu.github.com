@@ -3,10 +3,10 @@ category: articles
 description: "A straightforward guide to get you from zero to working VirtualBox Ubuntu 12.04 LTS virtual machine image. In under 10 minutes and with minimal fuss."
 published: true
 title: "Packer: In 10 minutes, from zero to bootable VirtualBox Ubuntu 12.04"
-updated: 2015-01-13
+updated: 2016-06-21
 ---
 
-Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast. **(Updated for packer v0.5.2)**
+Trying to build a simple VirtualBox Ubuntu image was not without digging around, even though the documentation at [Packer](http://www.packer.io) would lead you to believe everything is quite straightforward. If you were looking for a concrete example of creating a VirtualBox Ubuntu 12.04 LTS image with Packer, this should be a straightforward guide to get you up and running fast. **(Updated for packer v0.10.1)**
 
 ![packer_splash.jpg](/uploads/packer_splash.jpg)
 
@@ -31,137 +31,15 @@ Now, armed with this information, we start by creating the Packer template. Befo
 
 Let’s name the template `ubuntu_64.json` and place it in the folder you previously created. Take a look at mine:
 
-```json
-{
-    "variables": {
-        "ssh_name": "kappataumu",
-        "ssh_pass": "kappataumu",
-        "hostname": "packer-test"
-    },
-
-    "builders": [{
-        "type": "virtualbox-iso",
-        "guest_os_type": "Ubuntu_64",
-
-        "vboxmanage": [
-            ["modifyvm", "{{ "{{.Name"}}}}", "--vram", "32"]
-        ],
-
-        "disk_size" : 10000,
-
-        "iso_url": "http://releases.ubuntu.com/precise/ubuntu-12.04.3-server-amd64.iso",
-        "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
-        "iso_checksum_type": "md5",
-
-        "http_directory" : "ubuntu_64",
-        "http_port_min" : 9001,
-        "http_port_max" : 9001,
-
-        "ssh_username": "{{ "{{user `ssh_name`"}}}}",
-        "ssh_password": "{{ "{{user `ssh_pass`"}}}}",
-        "ssh_wait_timeout": "20m",
-
-        "shutdown_command": "echo {{ "{{user `ssh_pass`"}}}} | sudo -S shutdown -P now",
-
-        "boot_command" : [
-            "<esc><esc><enter><wait>",
-            "/install/vmlinuz noapic ",
-            "preseed/url=http://{{ "{{ .HTTPIP "}}}}:{{ "{{ .HTTPPort "}}}}/preseed.cfg ",
-            "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-            "hostname={{ "{{user `hostname`"}}}} ",
-            "fb=false debconf/frontend=noninteractive ",
-            "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-            "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-            "initrd=/install/initrd.gz -- <enter>"
-        ]
-    }]
-}
-```
+<script src='https://gitembed.com/https://github.com/kappataumu/packer-playgound/blob/master/ubuntu_64.json'></script>
+<noscript><a href='https://github.com/kappataumu/packer-playgound/blob/master/ubuntu_64.json'>https://github.com/kappataumu/packer-playgound/blob/master/ubuntu_64.json</a></noscript>
 
 Remember that you can always validate the correctness of the template by running `packer validate ubuntu_64.json`
 
 Next up, `preseed.cfg`, the file used to preconfigure the installer:
 
-```cfg
-# Some inspiration:
-# * https://github.com/chrisroberts/vagrant-boxes/blob/master/definitions/precise-64/preseed.cfg
-# * https://github.com/cal/vagrant-ubuntu-precise-64/blob/master/preseed.cfg
-
-# English plx
-d-i debian-installer/language string en
-d-i debian-installer/locale string en_US.UTF-8
-d-i localechooser/preferred-locale string en_US.UTF-8
-d-i localechooser/supported-locales en_US.UTF-8
-
-# Including keyboards
-d-i console-setup/ask_detect boolean false
-d-i keyboard-configuration/layout select USA
-d-i keyboard-configuration/variant select USA
-d-i keyboard-configuration/modelcode string pc105
-
-
-# Just roll with it
-d-i netcfg/get_hostname string this-host
-d-i netcfg/get_domain string this-host
-
-d-i time/zone string UTC
-d-i clock-setup/utc-auto boolean true
-d-i clock-setup/utc boolean true
-
-
-# Choices: Dialog, Readline, Gnome, Kde, Editor, Noninteractive
-d-i debconf debconf/frontend select Noninteractive
-
-d-i pkgsel/install-language-support boolean false
-tasksel tasksel/first multiselect standard, ubuntu-server
-
-
-# Stuck between a rock and a HDD place
-d-i partman-auto/method string lvm
-d-i partman-lvm/confirm boolean true
-d-i partman-lvm/device_remove_lvm boolean true
-d-i partman-auto/choose_recipe select atomic
-
-d-i partman/confirm_write_new_label boolean true
-d-i partman/confirm_nooverwrite boolean true
-d-i partman/choose_partition select finish
-d-i partman/confirm boolean true
-
-# Write the changes to disks and configure LVM?
-d-i partman-lvm/confirm boolean true
-d-i partman-lvm/confirm_nooverwrite boolean true
-d-i partman-auto-lvm/guided_size string max
-
-# No proxy, plx
-d-i mirror/http/proxy string
-
-# Default user, change
-d-i passwd/user-fullname string kappataumu
-d-i passwd/username string kappataumu
-d-i passwd/user-password password kappataumu
-d-i passwd/user-password-again password kappataumu
-d-i user-setup/encrypt-home boolean false
-d-i user-setup/allow-password-weak boolean true
-
-# No language support packages.
-d-i	pkgsel/install-language-support boolean false
-
-# Individual additional packages to install
-d-i pkgsel/include string build-essential ssh
-
-#For the update
-d-i pkgsel/update-policy select none
-
-# Whether to upgrade packages after debootstrap.
-# Allowed values: none, safe-upgrade, full-upgrade
-d-i pkgsel/upgrade select safe-upgrade
-
-# Go grub, go!
-d-i grub-installer/only_debian boolean true
-
-d-i finish-install/reboot_in_progress note
-
-```
+<script src='https://gitembed.com/https://github.com/kappataumu/packer-playgound/blob/master/http_directory/preseed.cfg?lexer=text'></script>
+<noscript><a href='https://github.com/kappataumu/packer-playgound/blob/master/http_directory/preseed.cfg'>https://github.com/kappataumu/packer-playgound/blob/master/http_directory/preseed.cfg</a></noscript>
 
 Now we can finally build the image:
 
