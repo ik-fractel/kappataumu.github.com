@@ -2,7 +2,7 @@
 category: articles
 description: "Custom Ubuntu Vagrant box for rapid Django web application development, using Cookiecutter Django for the Django project layout."
 published: true
-title: "Custom Vagrant box for jump-starting Django projects"
+title: "Custom Vagrant box for jump-starting Django projects using Cookicutter"
 ---
 
 Being able to effortlessly bootstrap new [Django](https://www.djangoproject.com/) projects and quickly flesh out ideas is very important. It minimizes the effort spent on configuration minutiae, enabling us to focus on the actual task at hand. Haven't we all felt drained after a long tooling troubleshooting session, wanting to hit the sack instead of writing beautiful code? Let's see how to streamline things.
