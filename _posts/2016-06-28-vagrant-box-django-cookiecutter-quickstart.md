@@ -7,7 +7,9 @@ title: "Custom Vagrant box for jump-starting Django projects"
 
 Being able to effortlessly bootstrap new [Django](https://www.djangoproject.com/) projects and quickly flesh out ideas is very important. It minimizes the effort spent on configuration minutiae, enabling us to focus on the actual task at hand. Haven't we all felt drained after a long tooling troubleshooting session, wanting to hit the sack instead of writing beautiful code? Let's see how to streamline things.
 
-To begin with, we are going to use [Vagrant](https://www.vagrantup.com/) with a minimal `Vagrantfile`, to specify the details of our virtual machine (Ubuntu 14.04.04 LTS). Two ports will be forwarded, `8000` for the web server and `35729` for [LiveReload](http://livereload.com/).
+## A Vagrant box using Ubuntu
+
+To begin with, we are going to use [Vagrant](https://www.vagrantup.com/) with a minimal `Vagrantfile`, to specify the details of our virtual machine (using the [ubuntu/trusty64 box](https://atlas.hashicorp.com/ubuntu/boxes/trusty64)). Two ports will be forwarded, `8000` for the web server and `35729` for [LiveReload](http://livereload.com/).
 
 <script src='https://gitembed.com/https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/Vagrantfile?lexer=rb'></script>
 <noscript><a href='https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/Vagrantfile'>https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/Vagrantfile</a></noscript>
@@ -20,6 +22,8 @@ project_slug="cookiestrap"
 db_user='db_user'
 db_password='db_pass'
 ``` 
+
+## Provisioning and configuration
 
 We'll use [pyenv](https://github.com/yyuu/pyenv) and [pyenv-virtualenv](https://github.com/yyuu/pyenv-virtualenv) to compile, install and manage the latest Python and a new virtualenv for our project respectivelly. 
 
@@ -57,12 +61,14 @@ cookiecutter_options=(
 )
 ``` 
 
-To wrap things up, we'll install and configure PostgreSQL and Grunt (to provide automatic SASS/SCSS recompilation and push notifications to the [LiveReload browser extension](http://livereload.com/extensions/)) and finally serve the app using Django's development server.
+To wrap things up, we'll install and configure PostgreSQL and [Grunt](http://gruntjs.com/) (to provide automatic [Sass/SCSS](http://sass-lang.com/) recompilation and push notifications to the [LiveReload browser extension](http://livereload.com/extensions/)). Finally, we'll serve the app using Django's development server.
 
 The provisioning script in its entirety:
 
 <script src='https://gitembed.com/https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/cookiestrap.sh'></script>
 <noscript><a href='https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/cookiestrap.sh'>https://github.com/kappataumu/vagrant-django-cookie-dough/blob/master/cookiestrap.sh</a></noscript>
+
+## Setting off on your own
 
 You can now set off on your own, by cloning the project's [repository](https://github.com/kappataumu/vagrant-django-cookie-dough) and editing `cookiestrap.sh`:
 
