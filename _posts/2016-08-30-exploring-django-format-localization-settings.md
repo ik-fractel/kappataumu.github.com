@@ -17,24 +17,45 @@ First, let's take a look at `settings.py`. These are the defaults when starting 
 
 ```python
 LANGUAGE_CODE = 'en-us'
-USE_I18N = True 
+USE_I18N = True
 USE_L10N = True
 ```
 
-Interestingly, the [docs](https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n) say that the default is `USE_L10N = False`, but `startproject`, for convenience, sets `USE_L10N = True`. 
+Interestingly, the [docs](https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n) say that the default is `USE_L10N = False`, but `startproject`, for convenience, sets `USE_L10N = True`.
 
 
-### Using template filters to format the thousand separator
+### Using template filters to format numbers with a custom thousand separator
 
-If you just need to format numbers in a couple of places, doing it in the template makes sense. Let's explore options. 
+If you need to format integers only in a couple of places, doing it in the template makes sense. Let's explore options.
 
-Looking into [`django.contrib.humanize`](https://docs.djangoproject.com/en/dev/ref/contrib/humanize/) we find the somewhat related [`intcomma`](https://docs.djangoproject.com/en/dev/ref/contrib/humanize/#intcomma) template filter. Apparently this respects format localization settings, therefore even if there was an analogous `intdot` things wouldn't really work. This is because if `USE_L10N = True` then `intcomma` actually works more like a hypothetical `intcurrentlocalethousandseparator`, i.e. uses the active locale's thousand separator. This means that if the active locale uses a dot as the thousand separator, `intcomma` will use *a dot* when formatting output values. Which is paradoxical. 
+Searching for solutions, one will surely come across [`django.contrib.humanize`](https://docs.djangoproject.com/en/dev/ref/contrib/humanize/) which provides a set of useful template filters, such as [`intcomma`](https://docs.djangoproject.com/en/dev/ref/contrib/humanize/#intcomma), which converts an integer to a string containing commas every three digits. Pretty close, but we need a dot, not a comma. As an interesting aside, this filter respects format localization if enabled (by `USE_L10N = True`). This means that if the active locale uses a dot as the thousand separator, `intcomma` will use *a dot* when formatting output values.
 
-We observe this when piping [`unlocalize`](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#unlocalize) into `intcomma` or [turning off localization for that part of the template](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#localize). In the latter case, even if `USE_L10N` is, as noted in the docs, disregarded inside {% raw %}`{% localize off %}`{% endraw %}, `intcomma` does respect it regardless when in such a block. As we'll discover further down, this is a common pattern for most of the settings involving locale-aware formatting.
+This point can be illustrated by strategically using [`unlocalize`](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#unlocalize):
 
-So `intcomma` isn't *trully* `intcomma` unless localization is disabled *entirely* by `USE_L10N = False` in `settings.py`.
+```
+# In settings.py
+# Remember the Germans use a dot
+LANGUAGE_CODE = 'de'
+USE_THOUSAND_SEPARATOR = True
 
-Anyhow, writing a custom Django template filter that ignores localization is easy, we can just plop something like this into a `templatetags` directory inside our app:
+# In our template we load django.contrib.humanize, assuming big_int = 1000
+{% load l10n %}
+
+# Renders 1.000 (since format localization is fully enabled)
+{{ big_int }}
+
+# Renders 1000 (unlocalize forces a single value to be printed without localization)
+{{ big_int|unlocalize }}
+
+# Renders 1.000 (uses the thousand separator of the active locale, not a comma)
+{{ big_int|unlocalize|intcomma }}
+```
+
+Quite paradoxical for a template tag named `intcomma`. In case you were wondering, using {% raw %}`{% localize off %}`{% endraw %} is similarly [disregarded](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#localize).
+
+So we've reached the conclusion that `intcomma` isn't *trully* `intcomma` unless localization is disabled *entirely* by `USE_L10N = False` in `settings.py`. But this is what RTFM is for.
+
+Since the analogous `intdot` is nowhere to be seen (and [not for lack of effort](https://code.djangoproject.com/ticket/11636)), we'll have to do it on our own, while at the same time ignoring localization. Implementing a custom Django template filter is easy, we can just plop something like this into a `templatetags` directory inside our app:
 
 ```python
 import re
@@ -55,18 +76,18 @@ def intdot(value):
         return intdot(new)
 ```
 
-And then use it in our templates:
+Then we can use it in our templates like so:
 
 {% highlight html %}
 {% raw %}
 
 {% load intdot %}
-<span class="big-num">{{ num_num_num|intdot }}</span>
+<span class="big-int">{{ big_int|intdot }}</span>
 
 {% endraw %}
 {% endhighlight %}
 
-This filter would be a good addition to `django.contrib.humanize` alongside `intcomma` but it didn't make the cut [almost a decade ago](https://code.djangoproject.com/ticket/11636). 
+
 
 ### Drilling into format localization settings
 
@@ -85,7 +106,7 @@ Ok, so first we need to set `USE_THOUSAND_SEPARATOR = True` in `settings.py`, to
 | --- | --- |
 | {% raw %}`<span>{{ price }}</span>`{% endraw %} | `<span>1,000,000</span>` |
 
-Django provides a way to override number formatting in `settings.py`. Since we've set `USE_THOUSAND_SEPARATOR = True`, now we can also specify these: 
+Django provides a way to override number formatting in `settings.py`. Since we've set `USE_THOUSAND_SEPARATOR = True`, now we can also specify these:
 
 ```python
 THOUSAND_SEPARATOR = '.'
@@ -93,13 +114,13 @@ NUMBER_GROUPING = 3
 DECIMAL_SEPARATOR = ','
 ```
 
-But does this work? Nope, because of the [fineprint](https://docs.djangoproject.com/en/dev/ref/settings/#use-thousand-separator): 
+But does this work? Nope, because of the [fineprint](https://docs.djangoproject.com/en/dev/ref/settings/#use-thousand-separator):
 
 > When USE_L10N is set to True and if this is also set to True, Django will use the values of THOUSAND_SEPARATOR and NUMBER_GROUPING to format numbers unless the locale already has an existing thousands separator. If there is a thousands separator in the locale format, it will have higher precedence and will be applied instead.
 
-In our case, the `en` locale format file (located in `django/conf/locale/en/`) of course sets all of these. 
+This too seems paradoxical, as I would've expected my settings file to have the highest precedence, even if it meant I would lose the flexibility of supporting number format localization across locales by doing so. We'll talk about the proper way to do it further down, using a custom locale format file on an ad-hoc basis. Anyhow, in our case, the `en` locale format file (located in `django/conf/locale/en/`) of course sets all of these.
 
-Curious about how often a format file doesn't set `THOUSAND_SEPARATOR`, I decided to poke into `django/conf/locale/`, where all the locale format files that ship with Django reside. Out of the 70 locales available, only 5 didn't set `THOUSAND_SEPARATOR`:
+Curious about how often a format file *doesn't* set `THOUSAND_SEPARATOR`, I decided to poke into `django/conf/locale/`, where all the locale format files that ship with Django reside. Out of the 70 locales available, only 5 didn't set `THOUSAND_SEPARATOR`:
 
 ```
 ./ta/formats.py
@@ -109,7 +130,7 @@ Curious about how often a format file doesn't set `THOUSAND_SEPARATOR`, I decide
 ./kn/formats.py
 ```
 
-In other words, only in these locales would one be able to specify a `THOUSAND_SEPARATOR` (and friends) that works if `USE_L10N = True`. 
+In other words, only in these locales would one be able to specify a `THOUSAND_SEPARATOR` (and friends) that works if `USE_L10N = True`.
 
 Obviously, if we disable localization entirely, by `USE_L10N = False` these settings do take effect no questions asked, but then we lose everything else, like locale-aware date formatting. In light of the above, it seems that creating a custom format file is the only way to selectively override a subset of locale formatting options.
 
@@ -144,4 +165,4 @@ FORMAT_MODULE_PATH = [
 ]
 ```
 
-A bit involved, but it works, as long as the locale stays the same, i.e. if the locale changes, perhaps due to browser autodetection, the overriden settings won't work. Other locales will obey their respective locale format files, unless you override them too, which seems like too much work. It would've been much easier to give the options in `settings.py` higher precedence over everything else.
+A bit involved, but it works, as long as the locale stays the same, i.e. if the locale changes, perhaps due to browser autodetection, the overridden settings won't work. Other locales will obey their respective locale format files, unless you override them too, which seems like too much work. But there is way, if you are so inclined.
