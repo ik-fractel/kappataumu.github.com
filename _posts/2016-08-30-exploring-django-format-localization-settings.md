@@ -32,24 +32,30 @@ Searching for solutions, one will surely come across [`django.contrib.humanize`]
 
 This point can be illustrated by strategically using [`unlocalize`](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#unlocalize):
 
-```
+```python
 # In settings.py
 # Remember the Germans use a dot
 LANGUAGE_CODE = 'de'
 USE_THOUSAND_SEPARATOR = True
+```
 
-# In our template we load django.contrib.humanize, assuming big_int = 1000
+{% highlight html %}
+{% raw %}
+
+<!-- In our template we load django.contrib.humanize, assuming big_int = 1000 -->
 {% load l10n %}
 
-# Renders 1.000 (since format localization is fully enabled)
+<!-- Renders 1.000 (since format localization is fully enabled) -->
 {{ big_int }}
 
-# Renders 1000 (unlocalize forces a single value to be printed without localization)
+<!-- Renders 1000 (unlocalize forces a single value to be printed without localization) -->
 {{ big_int|unlocalize }}
 
-# Renders 1.000 (uses the thousand separator of the active locale, not a comma)
+<!-- Renders 1.000 (uses the thousand separator of the active locale, not a comma) -->
 {{ big_int|unlocalize|intcomma }}
-```
+
+{% endraw %}
+{% endhighlight %}
 
 Quite paradoxical for a template tag named `intcomma`. In case you were wondering, using {% raw %}`{% localize off %}`{% endraw %} is similarly [disregarded](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#localize).
 
