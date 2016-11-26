@@ -171,4 +171,4 @@ FORMAT_MODULE_PATH = [
 ]
 ```
 
-A bit involved, but it works, as long as the locale stays the same, i.e. if the locale changes, perhaps due to browser autodetection, the overridden settings won't work. Other locales will obey their respective locale format files, unless you override them too, which seems like too much work. But there is way, if you are so inclined.
+A bit involved, but it works, as long as the locale stays the same, i.e. if the locale changes, perhaps due to browser autodetection, the overridden settings won't work. Other locales will obey their respective locale format files, unless you override them too, which seems like too much work. But there is a way, if you are so inclined.
