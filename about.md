@@ -1,6 +1,6 @@
 ---
 layout: nouveau_article
-title: "About @kappataumu"
+title: "About"
 description: "About @kappataumu and a few details about how this site is built."
 ---
 

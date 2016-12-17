@@ -5,13 +5,13 @@ layout: nouveau
 <article class="single">
     <header>
         <h1>{{page.title}}</h1>
-        <span class="article-meta">
-            {{ page.date | date: "%B %d, %Y" }}
+        <div class="article-meta">
             {% if page.updated %}
-            <br>
-            <strong>Updated:</strong> {{ page.updated | date: "%B %d, %Y" }}
+            <span class="article-meta-date"><strong>Updated: </strong>{{ page.updated | date: "%B %d, %Y" }}</span>
+            {% else %}
+            <span class="article-meta-date">{{ page.date | date: "%B %d, %Y" }}</span>
             {% endif %}
-        </span>
+        </div>
     </header>
     {{ content }}
 </article>
