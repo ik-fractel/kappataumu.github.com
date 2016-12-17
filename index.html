@@ -5,21 +5,14 @@ description: "Where @kappataumu writes about computers and stuff. Don't be shy, 
 ---
 
 <div class="article-excerpts">
-
 {% for item in site.categories.articles limit:40 offset:0 %}
-
     <article class="excerpt">
         <h1>
             <a href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
                 {{item.title}}
             </a>
         </h1>
-
         {{ item.excerpt }}
-
-        <span> → </span>
     </article>
-
 {% endfor %}
-
 </div>
