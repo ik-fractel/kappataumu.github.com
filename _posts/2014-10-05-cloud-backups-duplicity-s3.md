@@ -75,7 +75,7 @@ We are going to generate a GPG key pair, which we’ll instruct Duplicity to use
 $ gpg --gen-key
 ```
 
-You will also be prompted for your name, e-mail address, and a comment to be associated with this keypair. Fill in your details, and hit `O` to confirm you are happy with the USER-ID derived from your data. For extra security, a passphrase is required; type it in twice. Make sure to pick something other than ‘correct horse battery staple’, which is what i always use:
+You will also be prompted for your name, e-mail address, and a comment to be associated with this keypair. Fill in your details, and hit `O` to confirm you are happy with the USER-ID derived from your data. For extra security, a passphrase is required; type it in twice. Make sure to pick something other than ‘correct horse battery staple’, which is what I always use:
 
 ```bash
 Enter passphrase:

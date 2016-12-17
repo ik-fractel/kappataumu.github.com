@@ -37,7 +37,7 @@ Vagrant takes this pain away; a very concise `Vagrantfile` is all that's needed:
 
 Just like that, a suitable VM is brought up for you, port forwarding is arranged and the repo folder is exposed to the host. We can edit the files in the repository with our favorite editor, and browse to [http://localhost:4000](http://localhost:4000) to preview the results.
 
-You can try this immediately by cloning the [companion repository i've put up on GitHub](https://github.com/kappataumu/vagrant-up-github-pages), like so (make sure you set `REPO` to your own repository):
+You can try this immediately by cloning the [companion repository I've put up on GitHub](https://github.com/kappataumu/vagrant-up-github-pages), like so (make sure you set `REPO` to your own repository):
 
 ```bash
 $ git clone https://github.com/kappataumu/vagrant-up-github-pages.git

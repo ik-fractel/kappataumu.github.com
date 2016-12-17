@@ -5,7 +5,7 @@ published: true
 title: "From StartSSL to Let's Encrypt, using CloudFlare DNS"
 ---
 
-End-to-end encryption is a great thing for the web, even if the current system is [fundamentally broken](https://www.youtube.com/watch?v=Z7Wl2FW2TcA). I'm not going to bore you with all the nitty-gritty details, since i'm pretty sure that if you're reading this we're in agreement, possibly on both accounts. What's important is that [Let's Encrypt](https://letsencrypt.org/) eliminated the monetary cost of acquiring SSL certificates.
+End-to-end encryption is a great thing for the web, even if the current system is [fundamentally broken](https://www.youtube.com/watch?v=Z7Wl2FW2TcA). I'm not going to bore you with all the nitty-gritty details, since I'm pretty sure that if you're reading this we're in agreement, possibly on both accounts. What's important is that [Let's Encrypt](https://letsencrypt.org/) eliminated the monetary cost of acquiring SSL certificates.
 
 But how did we get here?
 
@@ -24,7 +24,7 @@ On December 2015 Let's Encrypt [entered public beta](https://letsencrypt.org/201
 
 An interesting decision by Let's Encrypt was to limit the lifetime of certificates to 90 days, in order to [encourage automation and mitigate potential security risks from key compromise](https://letsencrypt.org/2015/11/09/why-90-days.html). This means that interacting with their infrastructure becomes a common affair for most devops folk, and makes selecting the proper client important.
 
-You have a [plethora of clients](https://community.letsencrypt.org/t/list-of-client-implementations/2103) that conform to the [ACME spec](https://github.com/ietf-wg-acme/acme/) to choose from, including the official one. Here, i'll be using [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh), for which i've written a [custom hook for CloudFlare](https://github.com/kappataumu/letsencrypt-cloudflare-hook) that enables us to use DNS records instead of a web server to complete the whole process. This means we'll be using the `dns-01` challenge instead of `http-01`, so that [Boulder](https://github.com/letsencrypt/boulder) (the Let's Encrypt ACME server) will be looking for challenge responses in our DNS records instead of some `.well-known/acme-challenge` publicly facing directory.
+You have a [plethora of clients](https://community.letsencrypt.org/t/list-of-client-implementations/2103) that conform to the [ACME spec](https://github.com/ietf-wg-acme/acme/) to choose from, including the official one. Here, I'll be using [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh), for which I've written a [custom hook for CloudFlare](https://github.com/kappataumu/letsencrypt-cloudflare-hook) that enables us to use DNS records instead of a web server to complete the whole process. This means we'll be using the `dns-01` challenge instead of `http-01`, so that [Boulder](https://github.com/letsencrypt/boulder) (the Let's Encrypt ACME server) will be looking for challenge responses in our DNS records instead of some `.well-known/acme-challenge` publicly facing directory.
 
 Let's get started:
 

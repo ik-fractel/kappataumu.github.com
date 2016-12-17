@@ -6,17 +6,17 @@ title: "Modern Perl toolchain for Git managed web apps"
 updated: 2014-10-30
 ---
 
-Separation of concerns has always been a key issue for me as a developer, often going to great lengths for compartmentalization and clearly defined boundaries. A macro example of this is using VMs for development; it has improved my productivity immensely because the host OS is decoupled from the dependencies of the projects i am working on.
+Separation of concerns has always been a key issue for me as a developer, often going to great lengths for compartmentalization and clearly defined boundaries. A macro example of this is using VMs for development; it has improved my productivity immensely because the host OS is decoupled from the dependencies of the projects I am working on.
 
 But this also trickles down inside VMs. Working with Linux, i’ve found that keeping the system as pristine as possible after installation is a good thing. When working with Perl, I set the following objectives:
 
 1. Leave the system Perl alone.
-2. Install any Perl i choose.
+2. Install any Perl I choose.
     - And even switch between installed Perls
     - Either globally or on a per-project page
 3. Manage Perl module dependencies within the project’s git repo.
 
-If you were uncertain about getting into all this trouble because it might be complicated, i assure you it’s easier than you think, even if you are a beginner. And the benefits are worth it. Read on.
+If you were uncertain about getting into all this trouble because it might be complicated, I assure you it’s easier than you think, even if you are a beginner. And the benefits are worth it. Read on.
 
 These objectives can be satisfied with a modern breed of Perl tools, that take their inspiration from the paradigms of other languages with an established toolchain geared towards isolation and, well, keeping related things together.
 
@@ -51,7 +51,7 @@ At this point we have Perl 5.18.0 installed in our home directory but aren’t u
 ```bash
 $ plenv install-cpanm
 ```
-Note that this installs cpanm into the current global Perl. As you saw above, i've set this to Perl 5.18.0 which resides in our home directory and is managed by `plenv`. If for any reason you revert to the system Perl and try to execute `cpanm`, `plenv` will warn you that it is not available (and show which Perl you'll need to switch to, to get it).
+Note that this installs cpanm into the current global Perl. As you saw above, I've set this to Perl 5.18.0 which resides in our home directory and is managed by `plenv`. If for any reason you revert to the system Perl and try to execute `cpanm`, `plenv` will warn you that it is not available (and show which Perl you'll need to switch to, to get it).
 
 ```bash
 $ cpanm
