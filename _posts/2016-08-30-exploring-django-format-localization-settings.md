@@ -8,7 +8,7 @@ title: "Exploring Django format localization settings"
 Django supports many languages and locales out of the box. An important aspect of locale-aware applications is number formatting and Django provides quite a few knobs and switches, but using them isn't entirely straightforward.
 
 
-### The goal and some assumptions
+## The goal and some assumptions
 
 Django ships with the wrong thousand separator for one of the locales I use, so I was interested in finding a way to fix this in my code. Furthermore, I needed a locale-*unaware* thousand separator while keeping the rest of the localization machinery. This was a good opportunity to dive in.
 
@@ -24,7 +24,7 @@ USE_L10N = True
 Interestingly, the [docs](https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n) say that the default is `USE_L10N = False`, but `startproject`, for convenience, sets `USE_L10N = True`.
 
 
-### Using template filters to format numbers with a custom thousand separator
+## Using template filters to format numbers with a custom thousand separator
 
 If you need to format integers only in a couple of places, doing it in the template makes sense. Let's explore options.
 
@@ -95,7 +95,7 @@ Then we can use it in our templates like so:
 
 
 
-### Drilling into format localization settings
+## Drilling into format localization settings
 
 
 Now, say we have a model field that holds a number like `1000000`. We need to display this value in a template as `1.000.000` and the current locale is `en`:
@@ -142,7 +142,7 @@ Obviously, if we disable localization entirely, by `USE_L10N = False` these sett
 
 
 
-### Formatting numbers using a custom locale format file
+## Formatting numbers using a custom locale format file
 
 It's actually pretty simple. Just follow the [instructions](https://docs.djangoproject.com/en/dev/topics/i18n/formatting/#creating-custom-format-files). Here we will be overriding a subset of the English format settings. First, we create the directory structure inside our app:
 
